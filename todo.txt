@@ -1,0 +1,15 @@
+bootstrap, jquery, require?, underscore, 
+
+Main Genres:
+
+Metal, Rock, Folk, Indie, Hip Hop, Classical, 
+
+IMAGES:
+
+Portable Record player (old/hipster) http://www.flickr.com/photos/nfsa/6723075393/
+Hipster in gig http://www.flickr.com/photos/g3k/429011520/
+Gramophone http://www.flickr.com/photos/phonogalerie/358124820/
+spain mosh pit: http://www.flickr.com/photos/zoidberg72/7353652074/sizes/o/in/photostream/
+mosh pit: http://www.flickr.com/photos/xakaxunknownx/495312667/sizes/l/in/photostream/
+maryland mosh pit: http://www.flickr.com/photos/bantam10/7046608785/sizes/o/in/photostream/
+classical: http://www.flickr.com/photos/clickamazonia-com/7220951676/sizes/o/in/photostream/

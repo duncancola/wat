@@ -1,0 +1,14 @@
+7digital Music Guessing Game
+- The user chooses a music genre or a music decade
+- The backend will scan for a list of bands/songs relating to this
+- 20 questions by default
+- an example scenario:
+	- user chooses 20 questions about punk
+		- q1: a 20 second preview is played of a song, the user guesses 
+			the subgenre of the song
+		- q2: a 20 second preview is played of a song, the user guesses
+			which album cover the song is from
+	- guess subgenre/band location/year of album/decade/song name, band name
+	- give multiple choices, with 2 random wrong answers, but related
+- need a way of finding related bands/songs/albums - maybe using lastfm/dbpedia
+CONF1210111100
