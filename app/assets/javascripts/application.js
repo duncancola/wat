@@ -15,6 +15,50 @@
 //= require_tree .
 $(function () {
 	
+	var $imageElem = $("#mainPhoto");
 	
+	var images = {
+		normal: "#normalModePhoto",
+		hipster: "#hipsterModePhoto"
+	};
+	
+	var changeShownImage = function ($elem, imageIdToShow) {
+		if ($(imageIdToShow).hasClass("hidden")) {
+			$imageElem.find(".shown").fadeOut(100, function () {
+				$(imageIdToShow).fadeIn(100).addClass("shown").removeClass("hidden");
+			}).removeClass("shown").addClass("hidden");
+		}
+	};
+	
+	$("#normal").click(function () {
+		
+	})
+	.mouseover(function () {
+		changeShownImage($(this), images.normal);
+	})
+	.mouseout(function () {
+		
+	});
+	
+	
+	$("#hipster").click(function () {
+		
+	})
+	.mouseover(function () {
+		changeShownImage($(this), images.hipster);
+	})
+	.mouseout(function () {
+		
+	});
+	
+	$("#social").click(function () {
+		
+	})
+	.mouseover(function () {
+		
+	})
+	.mouseout(function () {
+		
+	});
 	
 });

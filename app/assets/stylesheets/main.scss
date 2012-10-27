@@ -4,7 +4,54 @@ $yellow: #FFF2C3;
 $green: #8AFFB5;
 $lightGreen: #AFFF97;
 
+$defaultRoundedAmount: 5px;
+
+*, html, body {
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	background: url(image_path("rebel/rebel.png"));
 	background-repeat: repeat;
+}
+
+h1 {
+	color: $yellow;
+}
+
+#mainPhoto {
+	text-align: center;
+	height: 400px;
+}
+
+#mainPhoto img {
+	max-height: 400px;
+}
+
+.hidden {
+	display: none;
+}
+
+.questionContainer h2 {
+	color: #222222;
+}
+
+.answerContainer h2 {
+	color: $hotPink;
+	text-align: center;
+}
+
+.questionContainer {
+	background-color: #FFFFFF;
+	border: 2px solid $salmonPink;
+	padding: 10px 20px;
+	margin: 20px 0;
+}
+
+.answerContainer {
+	background-color: $yellow;
+	border: 1px solid #222222;
+	padding: 10px;
+	margin: 20px 0;
 }
