@@ -49,9 +49,14 @@ h1 {
 	margin: 20px 0;
 }
 
-.answerContainer {
+.hoveredOption {
+	border: 2px solid $hotPink;
+	background-color: $lightGreen;
+}
+
+.optionContainer {
 	background-color: $yellow;
-	border: 1px solid #222222;
+	border: 2px solid #222222;
 	padding: 10px;
 	margin: 20px 0;
 }

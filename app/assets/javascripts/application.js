@@ -34,10 +34,11 @@ $(function () {
 		
 	})
 	.mouseover(function () {
+		$(this).addClass("hoveredOption");
 		changeShownImage($(this), images.normal);
 	})
 	.mouseout(function () {
-		
+		$(this).removeClass("hoveredOption");
 	});
 	
 	
@@ -45,10 +46,11 @@ $(function () {
 		
 	})
 	.mouseover(function () {
+		$(this).addClass("hoveredOption");
 		changeShownImage($(this), images.hipster);
 	})
 	.mouseout(function () {
-		
+		$(this).removeClass("hoveredOption");
 	});
 	
 	$("#social").click(function () {
