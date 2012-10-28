@@ -6,6 +6,7 @@ class PlayController < ApplicationController
   def index
     genre = params[:genre]
 
+	puts "genre=" + genre
     mf = MusicFactory.new(SevenDigitalRest.new(DoesRequests.new))
     artists = mf.get_artists_single_track(genre)
     dj = Dj.new

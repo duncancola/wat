@@ -16,10 +16,6 @@
 $(function () {
 	
 	var genres = {
-		hiphop: {
-			name: "hip hop",
-			tags: ["hip hop", "hip-hop", "rap"]
-		},
 		rock: {
 			name: "rock",
 			tags: ["rock"]
@@ -74,6 +70,19 @@ $(function () {
 		}
 	};
 	
+	var setupModeOptions = function () {
+		var keys = _.keys(genres);
+		var $select = $("#modeSelection");
+		var $option;
+		console.log(keys);
+		_.each(keys, function (key) {
+			$option = $("<option>").attr("name", key).html(key);
+			$select.append($option);
+		});
+	};
+	
+	setupModeOptions();
+	
 	var $imageElem = $("#mainPhoto");
 	
 	var images = {
@@ -83,7 +92,10 @@ $(function () {
 	
 	var startGame = function (mode) {
 		$("#options").hide();
-		game.start(mode, function () {
+		var genre = $("#modeSelection").val();
+		console.log(genre);
+		genre = genres[$.trim(genre)].name;
+		game.start(mode, genre, function () {
 			$("#options").fadeIn(100);
 		});
 	};

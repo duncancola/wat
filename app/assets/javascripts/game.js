@@ -130,12 +130,13 @@ var game = (function () {
 		});
 	};
 	
-	var load = function (modeName) {
+	var load = function (modeName, genre) {
 		$.ajax({
 			url: "play.json",
 			type: "get",
 			data: {
-				mode: modeName
+				mode: modeName,
+				genre: genre
 			},
 			success: function (questionsJson) {
 				var questions = _.map(questionsJson, function (q) {
@@ -147,11 +148,11 @@ var game = (function () {
 		});
 	};
 		
-	pub.start = function (modeName, options) {
+	pub.start = function (modeName, genre, options) {
 		if (_.isObject(options)) {
 			$.extend(settings, options);
 		}
-		load(modeName);
+		load(modeName, genre);
 	};
 	
 	return pub;
