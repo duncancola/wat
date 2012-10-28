@@ -11,8 +11,11 @@ var game = (function () {
 		questionContainer: "#questionContainer",
 		questionStatTemplate: "#questionStatTemplate",
 		gameSidebar: "#gameSidebar",
-		questionFadeTime: 200
+		questionFadeTime: 200,
+		modal: "#winnerModal"
 	};
+	
+	var correctAnswers = 0;
 	
 	var Question = function (jsonObj) {
 		this.songUrl = jsonObj.song_url;
@@ -80,6 +83,7 @@ var game = (function () {
 		if (correct) {
 			$gameStat.parent().addClass("correct");
 			$icon.find("i").addClass("icon-ok");
+			correctAnswers++;
 		} else {
 			$gameStat.parent().addClass("incorrect");
 			$icon.find("i").addClass("icon-remove");
@@ -103,7 +107,10 @@ var game = (function () {
 		
 		if (remainingQuestions.length === 0) {
 			// end game
-			alert("END GAME");
+			var totalQuestions = $(settings.gameSidebar).find("li").length;
+			var $endMessage = $("<p>").append(correctAnswers + " answers correct out of " + totalQuestions);
+			$(settings.modal).find(".modal-body").html($endMessage);
+			$(settings.modal).modal();
 		} else {
 			// load next question
 			loadQuestions(remainingQuestions);
@@ -142,6 +149,7 @@ var game = (function () {
 				var questions = _.map(questionsJson, function (q) {
 					return (new Question(q));
 				});
+				correctAnswers = 0;
 				preloadQuestionAudio(questions);
 				loadQuestions(questions);
 			}
