@@ -24,7 +24,9 @@ $(function () {
 	
 	var startGame = function (mode) {
 		$("#options").hide();
-		game.start(mode);
+		game.start(mode, function () {
+			$("#options").fadeIn(100);
+		});
 	};
 	
 	var changeShownImage = function ($elem, imageIdToShow) {

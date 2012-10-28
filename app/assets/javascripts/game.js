@@ -5,7 +5,9 @@ var game = (function () {
 	var settings = {
 		optionsTemplate: "#optionsTemplate",
 		optionsContainer: "#options",
-		photoContainer: "#mainPhoto"
+		photoContainer: "#mainPhoto",
+		questionContainer: "#questionContainer",
+		questionFadeTime: 200
 	};
 	
 	var Question = function (jsonObj) {
@@ -18,13 +20,22 @@ var game = (function () {
 		this.answer = jsonObj.answer;
 	};
 	
-	Question.prototype.addOptionsToHtml = function () {
-		var html = Mustache.to_html($(settings.optionsTemplate).html(), this.options);
-		$(settings.optionsContainer).html(html);
+	Question.prototype.display = function () {
+		// template buttons
+		var html = Mustache.to_html($(settings.optionsTemplate).html(), this);
+		$(settings.optionsContainer).html(html).fadeIn(settings.questionFadeTime);
+		// photo?
+		var $img = $("<img>").attr("src", this.image);
+		$(settings.photoContainer).append($img);
+		// question text
+		$(settings.questionContainer).html($("<h2>").append(this.text));
 	};
 	
-	var startGame = function (questions) {
-		
+	// display first question and have events to show win/lose/next question/play music/timing etc.
+	var loadQuestions = function (questions) {
+		var question = questions.shift();
+		question.display();
+		// TODO: all events relating to the question/html thus generated
 	};
 	
 	var load = function (modeName) {
@@ -38,7 +49,7 @@ var game = (function () {
 				var questions = _.map(questionsJson, function (q) {
 					return (new Question(q));
 				});
-				startGame(questions);
+				loadQuestions(questions);
 			}
 		});
 	};
