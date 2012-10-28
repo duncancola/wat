@@ -79,6 +79,18 @@
 </div>
 </script>
 
+<script id="optionsTemplateImage" type="text/template">
+<div id="{{uniqueQuestionId}}">
+{{#options}}
+	<div class="span4">
+		<div class="optionContainer standardOption" id="{{id}}">
+			<img src="{{content}}"/>
+		</div>
+	</div>
+{{/options}}
+</div>
+</script>
+
 <script id="questionStatTemplate" type="text/template">
 <div class="questionStatContainer" id="{{gameStatId}}">
 	<div class="questionNumber">

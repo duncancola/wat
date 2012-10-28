@@ -4,6 +4,7 @@ var game = (function () {
 	
 	var settings = {
 		optionsTemplate: "#optionsTemplate",
+		optionsTemplateImage: "#optionsTemplateImage",
 		optionsContainer: "#options",
 		options: ".optionContainer",
 		photoContainer: "#mainPhoto",
@@ -32,7 +33,12 @@ var game = (function () {
 		document.getElementById(this.audioId).play();
 		
 		// template buttons
-		var html = Mustache.to_html($(settings.optionsTemplate).html(), this);
+		var html = "";
+		if (q.type === "text") {
+			html = Mustache.to_html($(settings.optionsTemplate).html(), this);
+		} else {
+			html = Mustache.to_html($(settings.optionsTemplateImage).html(), this);
+		}
 		$(settings.optionsContainer).html(html).fadeIn(settings.questionFadeTime);
 		// photo?
 		var $img = $("<img>").attr("src", this.image);
