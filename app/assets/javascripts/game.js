@@ -21,10 +21,12 @@ var game = (function () {
 		this.text = jsonObj.text;
 		this.image = jsonObj.image;
 		this.answer = jsonObj.answer;
+		this.gameStatId = "game_stat" + jsonObj.id;
 	};
 	
 	Question.prototype.display = function () {
 		var q = this;
+		console.log(q);
 		// template buttons
 		var html = Mustache.to_html($(settings.optionsTemplate).html(), this);
 		$(settings.optionsContainer).html(html).fadeIn(settings.questionFadeTime);
@@ -37,18 +39,18 @@ var game = (function () {
 		var index = $(settings.gameSidebar).children("ul").find("li").length + 1;
 		var questionStatHtml = Mustache.to_html($(settings.questionStatTemplate).html(), {
 			index: index,
-			questionText: q.text
+			questionText: q.text,
+			gameStatId: q.gameStatId
 		});
 		var $questionStat = $("<li>").append(questionStatHtml);
 		$(settings.gameSidebar).children("ul").append($questionStat);
 	};
 	
-	Question.prototype.setEvents = function () {
-		console.log("setting events");
+	Question.prototype.setEvents = function (remainingQuestions) {
 		var q = this;
 		$(settings.options).click(function () {
 			var answer = parseInt($(this).attr("id"), 10);
-			selectAnswer(q, answer);
+			selectAnswer(q, answer, remainingQuestions);
 		})
 		.mouseover(function () {
 			$(this).removeClass("standardOption").addClass("hoveredOption");
@@ -58,8 +60,30 @@ var game = (function () {
 		});
 	};
 	
-	var selectAnswer = function (question, answer) {
-		alert(answer === question.answer);
+	Question.prototype.chosenAnswer = function (correct) {
+		var $icon = $("<i>");
+		if (correct) {
+			$(this.gameStatId).parent().addClass("correct");
+			$icon.addClass("icon-ok");
+		} else {
+			$(this.gameStatId).parent().addClass("incorrect");
+			$icon.addClass("icon-remove");
+		}
+		$(this.gameStatId).find(".questionIcon span").html($icon);
+	};
+	
+	var selectAnswer = function (question, answer, remainingQuestions) {
+		
+		// set stat to correct or incorrect answer
+		question.chosenAnswer(answer === question.answer);
+		
+		if (remainingQuestions.length === 0) {
+			// end game
+			
+		} else {
+			// load next question
+			loadQuestions(remainingQuestions);
+		}
 	};
 	
 	// display first question and have events to show win/lose/next question/play music/timing etc.
@@ -67,7 +91,7 @@ var game = (function () {
 		var question = questions.shift();
 		question.display();
 		// TODO: all events relating to the question/html thus generated
-		question.setEvents();
+		question.setEvents(questions);
 	};
 	
 	var load = function (modeName) {
