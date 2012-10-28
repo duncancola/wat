@@ -4,10 +4,14 @@ class PlayController < ApplicationController
 
   respond_to :json
   def index
+    #genre = params[:genre]
+    genre = "rock"
+
     mf = MusicFactory.new(SevenDigitalRest.new(DoesRequests.new))
-    artists = mf.get_artists_single_track("rock")
+    artists = mf.get_artists_single_track(genre)
     dj = Dj.new
     @questions = dj.create_questions(artists)
+
     respond_with(@questions) do |format|
       format.json { render :json => @questions.to_json() }
     end
