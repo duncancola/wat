@@ -1,4 +1,3 @@
-require 'oauth'
 require File.expand_path(File.dirname(__FILE__) + '/does_requests.rb')
 
 class SevenDigitalRest

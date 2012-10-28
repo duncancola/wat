@@ -1,3 +1,5 @@
+require 'music_factory'
+require 'dj'
 class PlayController < ApplicationController
 
   respond_to :json
