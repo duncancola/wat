@@ -35,7 +35,8 @@ class Dj
                     "text",
                     preview,
                     correct_answer,
-                    "What artist is this?")
+                    "What artist is this?",
+                    correct_artist.image)
   end
 
   def create_song_question(artist_group)
@@ -48,7 +49,8 @@ class Dj
                     "text",
                     preview,
                     correct_answer,
-                    "What song is this?")
+                    "What song is this?",
+                    correct_artist.image)
   end
 
   def create_album_question(artist_group)
@@ -61,7 +63,8 @@ class Dj
                     "image",
                     preview,
                     correct_answer,
-                    "What album is this song from?")
+                    "What album is this song from?",
+                    correct_artist.image)
   end
 
   def create_question(content_0, 
@@ -70,7 +73,8 @@ class Dj
                       type, 
                       preview, 
                       correct_answer, 
-                      text)
+                      text,
+                      image)
     {
 		:type => type,
 		:song_url => preview,
@@ -79,7 +83,8 @@ class Dj
 					 {:id => 2, :content => content_2}
 					],
 		:answer => correct_answer,
-		:text => text
+		:text => text,
+        :image => image
 	}
   end
 end

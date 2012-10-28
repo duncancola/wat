@@ -1,5 +1,5 @@
 class Artist
-  attr_reader :id, :name, :releases
+  attr_reader :id, :name, :releases, :image
   def initialize(id, name)
     @id = id
     @name = name
@@ -9,5 +9,12 @@ class Artist
     @id = id
     @name = name
     @releases = releases
+  end
+
+  def initialize(id, name, releases, image)
+    @id = id
+    @name = name
+    @releases = releases
+    @image = image
   end
 end
