@@ -5,18 +5,19 @@ class SevenDigitalRest
   CONSUMER_KEY = "musichackday"
   JSON = "&format=json"
   DEFAULT_NUMBER_OF_RESULTS = "&pageSize=9"
-  DEFAULT_IMAGE_SIZE = "&imageSize=200"
+  COVER_IMAGE_SIZE = "&imageSize=350"
+  ARTIST_IMAGE_SIZE = "&imageSize=200"
 
   def initialize(does_http_requests)
     @does_requests = does_http_requests
   end
 
   def get_artists_for_genre(genre)
-    @does_requests.get(BASE_URL + "artist/bytag/top?tags=" + genre + "&oauth_consumer_key=" + CONSUMER_KEY + DEFAULT_NUMBER_OF_RESULTS)
+    @does_requests.get(BASE_URL + "artist/bytag/top?tags=" + genre + "&oauth_consumer_key=" + CONSUMER_KEY + DEFAULT_NUMBER_OF_RESULTS + ARTIST_IMAGE_SIZE)
   end
 
   def get_releases(artist_id)
-    @does_requests.get(BASE_URL + "artist/releases?artistid=" + artist_id + "&oauth_consumer_key=" + CONSUMER_KEY + DEFAULT_IMAGE_SIZE)
+    @does_requests.get(BASE_URL + "artist/releases?artistid=" + artist_id + "&oauth_consumer_key=" + CONSUMER_KEY + COVER_IMAGE_SIZE)
   end
 
    def get_tracks(release_id)
