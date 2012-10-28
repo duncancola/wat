@@ -11,15 +11,15 @@ class Dj
     questions
   end
 
-  def create_random_question
+  def create_random_question(artist_group)
     question_type = rand(3)
     case question_type
     when 0
-      return create_artist_question
+      return create_artist_question(artist_group)
     when 1
-      return create_song_question
+      return create_song_question(artist_group)
     when 2
-      return create_album_question
+      return create_album_question(artist_group)
     else
       puts "wat"
     end
