@@ -29,49 +29,57 @@ class Dj
     correct_answer = rand(3)
     correct_artist = artist_group[correct_answer]
     preview = correct_artist.releases.tracks.preview
-    {
-		:type => "text",
-		:song_url => preview,
-		:options => [{:id => 0, :content => artist_group[0].name},
-					 {:id => 1, :content => artist_group[1].name},
-					 {:id => 2, :content => artist_group[2].name}
-					],
-		:answer => correct_answer,
-		:text => "What artist is this?"
-	}
+    create_question(artist_group[0].name,
+                    artist_group[1].name,
+                    artist_group[2].name,
+                    "text",
+                    preview,
+                    correct_answer,
+                    "What artist is this?")
   end
 
   def create_song_question(artist_group)
     correct_answer = rand(3)
     correct_artist = artist_group[correct_answer]
     preview = correct_artist.releases.tracks.preview
-    {
-		:type => "text",
-		:song_url => preview,
-		:options => [{:id => 0, :content => artist_group[0].releases.tracks.title},
-					 {:id => 1, :content => artist_group[1].releases.tracks.title},
-					 {:id => 2, :content => artist_group[2].releases.tracks.title}
-					],
-		:answer => correct_answer,
-		:text => "What song is this?"
-	}
+    create_question(artist_group[0].releases.tracks.title,
+                    artist_group[1].releases.tracks.title,
+                    artist_group[2].releases.tracks.title,
+                    "text",
+                    preview,
+                    correct_answer,
+                    "What song is this?")
   end
 
   def create_album_question(artist_group)
     correct_answer = rand(3)
     correct_artist = artist_group[correct_answer]
     preview = correct_artist.releases.tracks.preview
-    {
-		:type => "image",
-		:song_url => preview,
-		:options => [{:id => 0, :content => artist_group[0].releases.image},
-					 {:id => 1, :content => artist_group[1].releases.image},
-					 {:id => 2, :content => artist_group[2].releases.image}
-					],
-		:answer => correct_answer,
-		:text => "What album is this song from?"
-	}
+    create_question(artist_group[0].releases.title,
+                    artist_group[1].releases.title,
+                    artist_group[2].releases.title,
+                    "image",
+                    preview,
+                    correct_answer,
+                    "What album is this song from?")
   end
 
-
+  def create_question(content_0, 
+                      content_1,
+                      content_2,
+                      type, 
+                      preview, 
+                      correct_answer, 
+                      text)
+    {
+		:type => type,
+		:song_url => preview,
+		:options => [{:id => 0, :content => content_0},
+					 {:id => 1, :content => content_1},
+					 {:id => 2, :content => content_2}
+					],
+		:answer => correct_answer,
+		:text => text
+	}
+  end
 end
