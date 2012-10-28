@@ -5,6 +5,7 @@ var game = (function () {
 	var settings = {
 		optionsTemplate: "#optionsTemplate",
 		optionsContainer: "#options",
+		options: ".optionsContainer",
 		photoContainer: "#mainPhoto",
 		questionContainer: "#questionContainer",
 		questionFadeTime: 200
@@ -26,9 +27,22 @@ var game = (function () {
 		$(settings.optionsContainer).html(html).fadeIn(settings.questionFadeTime);
 		// photo?
 		var $img = $("<img>").attr("src", this.image);
-		$(settings.photoContainer).append($img);
+		$(settings.photoContainer).html("").append($img);
 		// question text
 		$(settings.questionContainer).html($("<h2>").append(this.text));
+	};
+	
+	Question.prototype.setEvents = function () {
+		var q = this;
+		$(settings.options).click(function () {
+			alert($(this).attr("id") === q.answer);
+		})
+		.mouseover(function () {
+			$(this).removeClass("standardOption").addClass("hoveredOption");
+		})
+		.mouseout(function () {
+			$(this).removeClass("hoveredOption").addClass("standardOption");
+		});
 	};
 	
 	// display first question and have events to show win/lose/next question/play music/timing etc.
@@ -36,6 +50,7 @@ var game = (function () {
 		var question = questions.shift();
 		question.display();
 		// TODO: all events relating to the question/html thus generated
+		
 	};
 	
 	var load = function (modeName) {

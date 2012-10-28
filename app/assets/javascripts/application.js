@@ -37,37 +37,43 @@ $(function () {
 		}
 	};
 	
-	$("#normal").click(function () {
-		startGame("normal");
-	})
-	.mouseover(function () {
-		$(this).removeClass("standardOption").addClass("hoveredOption");
-		changeShownImage($(this), images.normal);
-	})
-	.mouseout(function () {
-		$(this).removeClass("hoveredOption").addClass("standardOption");
-	});
+	var selectModeEvents = function () {
 	
+		$("#normal").click(function () {
+			startGame("normal");
+		})
+		.mouseover(function () {
+			$(this).removeClass("standardOption").addClass("hoveredOption");
+			changeShownImage($(this), images.normal);
+		})
+		.mouseout(function () {
+			$(this).removeClass("hoveredOption").addClass("standardOption");
+		});
+		
+		
+		$("#hipster").click(function () {
+			startGame("hipster");
+		})
+		.mouseover(function () {
+			$(this).removeClass("standardOption").addClass("hoveredOption");
+			changeShownImage($(this), images.hipster);
+		})
+		.mouseout(function () {
+			$(this).removeClass("hoveredOption").addClass("standardOption");
+		});
+		
+		$("#social").click(function () {
+			
+		})
+		.mouseover(function () {
+			
+		})
+		.mouseout(function () {
+			
+		});
+		
+	};
 	
-	$("#hipster").click(function () {
-		startGame("hipster");
-	})
-	.mouseover(function () {
-		$(this).removeClass("standardOption").addClass("hoveredOption");
-		changeShownImage($(this), images.hipster);
-	})
-	.mouseout(function () {
-		$(this).removeClass("hoveredOption").addClass("standardOption");
-	});
-	
-	$("#social").click(function () {
-		
-	})
-	.mouseover(function () {
-		
-	})
-	.mouseout(function () {
-		
-	});
+	selectModeEvents();
 	
 });

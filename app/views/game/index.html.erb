@@ -5,10 +5,45 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="span12">
+		<div class="span8">
 			<div id="mainPhoto">
 				<img src=<%= image_path("maryland_mosh_pit.jpg") %> id="normalModePhoto" class="shown"/>
 				<img src=<%= image_path("portable_record_player.jpg") %> id="hipsterModePhoto" class="hidden"/>
+			</div>
+		</div>
+		<div class="span4">
+			<div id="gameSidebar">
+				<h3>Game Stats</h3>
+				<ul>
+					<li>
+						<div class="questionStatContainer">
+							<div class="questionNumber">
+								<span class="padQuestion">Q1</span>
+							</div>
+							<div class="questionStat">
+								<span class="padQuestion">If this is a question, then what is the answer</span>
+							</div>
+							<div class="questionIcon">
+								<span class="padQuestion"><i class="icon-music"></i></span>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</li>
+					<li>
+						<div class="questionStatContainer">
+							<div class="questionNumber">
+								<span class="padQuestion">Q2</span>
+							</div>
+							<div class="questionStat">
+								<span class="padQuestion">LOLOLOLOL</span>
+							</div>
+							<div class="questionIcon">
+								<span class="padQuestion"><i class="icon-music"></i></span>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -20,41 +55,33 @@
 		</div>
 	</div>
 	<div class="row" id="options">
-		<div class="span4">
+		<div class="span6">
 			<div class="optionContainer standardOption" id="normal">
 				<h2>NORMAL MODE</h2>
 			</div>
 		</div>
-		<div class="span4">
+		<div class="span6">
 			<div class="optionContainer standardOption" id="hipster">
 				<h2>HIPSTER MODE</h2>
-			</div>
-		</div>
-		<div class="span4">
-			<div class="optionContainer standardOption" id="social">
-				<h2>SOCIAL</h2>
 			</div>
 		</div>
 	</div>
 </div>
 
+<!-- TEMPLATES -->
 <script id="gameMenuTemplate" type="text/template">
-	<div class="span4">
-		<div class="optionContainer standardOption" id="normal">
-			<h2>NORMAL MODE</h2>
-		</div>
+<div class="span6">
+	<div class="optionContainer standardOption" id="normal">
+		<h2>NORMAL MODE</h2>
 	</div>
-	<div class="span4">
-		<div class="optionContainer standardOption" id="hipster">
-			<h2>HIPSTER MODE</h2>
-		</div>
+</div>
+<div class="span6">
+	<div class="optionContainer standardOption" id="hipster">
+		<h2>HIPSTER MODE</h2>
 	</div>
-	<div class="span4">
-		<div class="optionContainer standardOption" id="social">
-			<h2>SOCIAL</h2>
-		</div>
-	</div>
+</div>
 </script>
+
 <script id="optionsTemplate" type="text/template">
 {{#options}}
 	<div class="span4">
@@ -63,4 +90,19 @@
 		</div>
 	</div>
 {{/options}}
+</script>
+
+<script id="questionStatTemplate" type="text/template">
+<div class="questionStatContainer">
+	<div class="questionNumber">
+		<span class="padQuestion">Q{{index}}</span>
+	</div>
+	<div class="questionStat">
+		<span class="padQuestion">{{questionText}}</span>
+	</div>
+	<div class="questionIcon">
+		<span class="padQuestion"><i class="icon-music"></i></span>
+	</div>
+</div>
+<div class="clearfix"></div>
 </script>
