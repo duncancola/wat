@@ -24,9 +24,17 @@ $(function () {
 			name: "jazz",
 			tags: ["jazz"]
 		},
+		blues: {
+			name: "blues",
+			tags: ["blues"]
+		},
 		classical: {
 			name: "classical",
 			tags: ["classical"]
+		},
+		opera: {
+			name: "opera",
+			tags: ["opera"]
 		},
 		folk: {
 			name: "folk",
@@ -39,6 +47,10 @@ $(function () {
 		funk: {
 			name: "funk",
 			tags: ["funk"]
+		},
+		reggae: {
+			name: "reggae",
+			tags: ["reggae"]
 		},
 		electronic: {
 			name: "electronic",
@@ -56,17 +68,33 @@ $(function () {
 			name: "punk",
 			tags: ["punk"]
 		},
-		soul: {
-			name: "soul",
-			tags: ["soul"]
-		},
-		rnb: {
-			name: "rnb",
-			tags: ["rnb", "r&b"]
-		},
 		pop: {
 			name: "pop",
 			tags: ["pop"]
+		},
+		1950s: {
+			name: "1950s",
+			tags: ["1950s"]
+		},
+		1960s: {
+			name: "1960s",
+			tags: ["1960s"]
+		},
+		1970s: {
+			name: "1970s",
+			tags: ["1970s"]
+		},
+		1980s: {
+			name: "1980s",
+			tags: ["1980s"]
+		},
+		1990s: {
+			name: "1990s",
+			tags: ["1990s"]
+		},
+		2000s: {
+			name: "2000s",
+			tags: ["2000s"]
 		}
 	};
 	
