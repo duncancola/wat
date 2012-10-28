@@ -4,8 +4,7 @@ class PlayController < ApplicationController
 
   respond_to :json
   def index
-    #genre = params[:genre]
-    genre = "rock"
+    genre = params[:genre]
 
     mf = MusicFactory.new(SevenDigitalRest.new(DoesRequests.new))
     artists = mf.get_artists_single_track(genre)
