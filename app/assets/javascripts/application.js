@@ -72,27 +72,27 @@ $(function () {
 			name: "pop",
 			tags: ["pop"]
 		},
-		1950s: {
+		fifties: {
 			name: "1950s",
 			tags: ["1950s"]
 		},
-		1960s: {
+		sixties: {
 			name: "1960s",
 			tags: ["1960s"]
 		},
-		1970s: {
+		seventies: {
 			name: "1970s",
 			tags: ["1970s"]
 		},
-		1980s: {
+		eighties: {
 			name: "1980s",
 			tags: ["1980s"]
 		},
-		1990s: {
+		nineties: {
 			name: "1990s",
 			tags: ["1990s"]
 		},
-		2000s: {
+		noughties: {
 			name: "2000s",
 			tags: ["2000s"]
 		}
