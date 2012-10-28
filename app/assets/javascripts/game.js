@@ -17,11 +17,11 @@ var game = (function () {
 		this.songUrl = jsonObj.song_url;
 		this.type = jsonObj.type || "text";
 		this.options = jsonObj.options;
-		this.id = jsonObj.id;
+		this.id = _.uniqueId();
 		this.text = jsonObj.text;
 		this.image = jsonObj.image;
 		this.answer = jsonObj.answer;
-		this.gameStatId = "game_stat" + jsonObj.id;
+		this.gameStatId = _.uniqueId("game_stat");
 	};
 	
 	Question.prototype.display = function () {
@@ -59,6 +59,10 @@ var game = (function () {
 		});
 	};
 	
+	Question.prototype.killEvents = function () {
+		$(settings.options).unbind("click mouseover mouseout");
+	};
+	
 	Question.prototype.chosenAnswer = function (correct) {
 		var $gameStat = $(document.getElementById(this.gameStatId));
 		var $icon = $("<span>").addClass("padQuestion").append("<i>");
@@ -74,14 +78,18 @@ var game = (function () {
 		$gameStat.find(".questionIcon").html($icon);
 	};
 	
+	
+	
 	var selectAnswer = function (question, answer, remainingQuestions) {
+		
+		question.killEvents();
 		
 		// set stat to correct or incorrect answer
 		question.chosenAnswer(answer === question.answer);
 		
 		if (remainingQuestions.length === 0) {
 			// end game
-			
+			alert("END GAME");
 		} else {
 			// load next question
 			loadQuestions(remainingQuestions);
@@ -93,6 +101,7 @@ var game = (function () {
 		var question = questions.shift();
 		question.display();
 		// TODO: all events relating to the question/html thus generated
+		console.log(question);
 		question.setEvents(questions);
 	};
 	
