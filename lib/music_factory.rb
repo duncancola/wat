@@ -18,8 +18,9 @@ class MusicFactory
     xml.xpath('//artist').each do |node|
       id = node[:id]
       name = node.xpath('name').first.text
+      image = node.xpath('image').first.text
       releases = get_single_release(id)
-      artists << Artist.new(id, name, releases)
+      artists << Artist.new(id, name, releases, image)
     end
     artists
   end
