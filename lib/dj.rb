@@ -57,22 +57,6 @@ class Dj
 	}
   end
 
-  def create_song_question(artist_group)
-    correct_answer = rand(3)
-    correct_artist = artist_group[correct_answer]
-    preview = correct_artist.releases.tracks.preview
-    {
-		:type => "text",
-		:song_url => preview,
-		:options => [{:id => 0, :content => artist_group[0].releases.tracks.title},
-					 {:id => 1, :content => artist_group[1].releases.tracks.title},
-					 {:id => 2, :content => artist_group[2].releases.tracks.title}
-					],
-		:answer => correct_answer,
-		:text => "What song is this?"
-	}
-  end
-
   def create_album_question(artist_group)
     correct_answer = rand(3)
     correct_artist = artist_group[correct_answer]
@@ -88,5 +72,6 @@ class Dj
 		:text => "What album is this song from?"
 	}
   end
+
 
 end
