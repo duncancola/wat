@@ -22,6 +22,11 @@ $(function () {
 		hipster: "#hipsterModePhoto"
 	};
 	
+	var startGame = function (mode) {
+		$("#options").hide();
+		game.start(mode);
+	};
+	
 	var changeShownImage = function ($elem, imageIdToShow) {
 		if ($(imageIdToShow).hasClass("hidden")) {
 			$imageElem.find(".shown").fadeOut(100, function () {
@@ -31,26 +36,26 @@ $(function () {
 	};
 	
 	$("#normal").click(function () {
-		
+		startGame("normal");
 	})
 	.mouseover(function () {
-		$(this).addClass("hoveredOption");
+		$(this).removeClass("standardOption").addClass("hoveredOption");
 		changeShownImage($(this), images.normal);
 	})
 	.mouseout(function () {
-		$(this).removeClass("hoveredOption");
+		$(this).removeClass("hoveredOption").addClass("standardOption");
 	});
 	
 	
 	$("#hipster").click(function () {
-		
+		startGame("hipster");
 	})
 	.mouseover(function () {
-		$(this).addClass("hoveredOption");
+		$(this).removeClass("standardOption").addClass("hoveredOption");
 		changeShownImage($(this), images.hipster);
 	})
 	.mouseout(function () {
-		$(this).removeClass("hoveredOption");
+		$(this).removeClass("hoveredOption").addClass("standardOption");
 	});
 	
 	$("#social").click(function () {

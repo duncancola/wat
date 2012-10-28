@@ -42,7 +42,7 @@ h1 {
 	text-align: center;
 }
 
-.questionContainer {
+#questionContainer {
 	background-color: #FFFFFF;
 	border: 2px solid $salmonPink;
 	padding: 10px 20px;
@@ -54,9 +54,13 @@ h1 {
 	background-color: $lightGreen;
 }
 
-.optionContainer {
+.standardOption {
 	background-color: $yellow;
 	border: 2px solid #222222;
+}
+
+.optionContainer {
 	padding: 10px;
 	margin: 20px 0;
+	cursor: pointer;
 }

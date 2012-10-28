@@ -1,35 +1,62 @@
 <div class="container">
 	<div class="row">
 		<div class="span12">
-			<h1>WAT MUSIC GAME</h1>
-			<div class="questionContainer">
-				<h2>Choose Your mode</h2>
-			</div>
-		</div>
-	</div>
-	<div class="row" id="mainPhoto">
-		<div class="span12">
 			<div id="mainPhoto">
 				<img src=<%= image_path("maryland_mosh_pit.jpg") %> id="normalModePhoto" class="shown"/>
 				<img src=<%= image_path("portable_record_player.jpg") %> id="hipsterModePhoto" class="hidden"/>
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="span12">
+			<h1>WAT MUSIC GAME</h1>
+			<div id="questionContainer">
+				<h2>Choose Your mode</h2>
+			</div>
+		</div>
+	</div>
 	<div class="row" id="options">
 		<div class="span4">
-			<div class="optionContainer" id="normal">
+			<div class="optionContainer standardOption" id="normal">
 				<h2>NORMAL MODE</h2>
 			</div>
 		</div>
 		<div class="span4">
-			<div class="optionContainer" id="hipster">
+			<div class="optionContainer standardOption" id="hipster">
 				<h2>HIPSTER MODE</h2>
 			</div>
 		</div>
 		<div class="span4">
-			<div class="optionContainer" id="social">
+			<div class="optionContainer standardOption" id="social">
 				<h2>SOCIAL</h2>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script id="gameMenuTemplate" type="text/template">
+	<div class="span4">
+		<div class="optionContainer standardOption" id="normal">
+			<h2>NORMAL MODE</h2>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="optionContainer standardOption" id="hipster">
+			<h2>HIPSTER MODE</h2>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="optionContainer standardOption" id="social">
+			<h2>SOCIAL</h2>
+		</div>
+	</div>
+</script>
+<script id="optionsTemplate" type="text/template">
+{{options}}
+	<div class="span4">
+		<div class="optionContainer standardOption" id="{{id}}">
+			<h2>{{content}}</h2>
+		</div>
+	</div>
+{{/options}}
+</script>
