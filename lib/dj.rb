@@ -55,9 +55,9 @@ class Dj
     correct_answer = rand(3)
     correct_artist = artist_group[correct_answer]
     preview = correct_artist.releases.tracks.preview
-    create_question(artist_group[0].releases.title,
-                    artist_group[1].releases.title,
-                    artist_group[2].releases.title,
+    create_question(artist_group[0].releases.image
+                    artist_group[1].releases.image,
+                    artist_group[2].releases.image,
                     "image",
                     preview,
                     correct_answer,
