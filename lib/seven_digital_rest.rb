@@ -5,7 +5,7 @@ class SevenDigitalRest
   BASE_URL = "http://api.7digital.com/1.2/"
   CONSUMER_KEY = "musichackday"
   JSON = "&format=json"
-  DEFAULT_NUMBER_OF_RESULTS = "&pageSize=3"
+  DEFAULT_NUMBER_OF_RESULTS = "&pageSize=9"
   DEFAULT_IMAGE_SIZE = "&imageSize=200"
 
   def initialize(does_http_requests)
