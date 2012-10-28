@@ -97,20 +97,3 @@ class MusicFactory
   end
 end
 
-mf = MusicFactory.new(SevenDigitalRest.new(DoesRequests.new))
-artists = mf.get_artists_single_track("rock")
-artists.each do |a|
-  puts a.name
-  puts a.id
-  r = a.releases
-  puts r.id
-  puts r.title
-  puts r.year
-  puts r.image
-  t = r.tracks
-  puts t.id
-  puts t.title
-  puts t.preview
-  puts "---------------__"
-end
-
