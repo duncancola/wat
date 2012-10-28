@@ -55,6 +55,14 @@ h1 {
 	border-bottom: 2px solid #222222;
 }
 
+#gameSidebar .correct {
+	background-color: $green;
+}
+
+#gameSidebar .incorrect {
+	background-color: $hotPink;
+}
+
 .questionStatContainer {
 	margin: 0;
 }

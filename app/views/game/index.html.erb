@@ -16,34 +16,6 @@
 			<div id="gameSidebar">
 				<h3>Game Stats</h3>
 				<ul>
-					<li>
-						<div class="questionStatContainer">
-							<div class="questionNumber">
-								<span class="padQuestion">Q1</span>
-							</div>
-							<div class="questionStat">
-								<span class="padQuestion">If this is a question, then what is the answer</span>
-							</div>
-							<div class="questionIcon">
-								<span class="padQuestion"><i class="icon-music"></i></span>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</li>
-					<li>
-						<div class="questionStatContainer">
-							<div class="questionNumber">
-								<span class="padQuestion">Q2</span>
-							</div>
-							<div class="questionStat">
-								<span class="padQuestion">LOLOLOLOL</span>
-							</div>
-							<div class="questionIcon">
-								<span class="padQuestion"><i class="icon-music"></i></span>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -94,7 +66,7 @@
 </script>
 
 <script id="questionStatTemplate" type="text/template">
-<div class="questionStatContainer">
+<div class="questionStatContainer" id="{{gameStatId}}">
 	<div class="questionNumber">
 		<span class="padQuestion">Q{{index}}</span>
 	</div>

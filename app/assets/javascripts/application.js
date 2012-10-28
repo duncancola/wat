@@ -15,6 +15,65 @@
 //= require_tree .
 $(function () {
 	
+	var genres = {
+		hiphop: {
+			name: "hip hop",
+			tags: ["hip hop", "hip-hop", "rap"]
+		},
+		rock: {
+			name: "rock",
+			tags: ["rock"]
+		},
+		jazz: {
+			name: "jazz",
+			tags: ["jazz"]
+		},
+		classical: {
+			name: "classical",
+			tags: ["classical"]
+		},
+		folk: {
+			name: "folk",
+			tags: ["folk"]
+		},
+		metal: {
+			name: "metal",
+			tags: ["metal"]
+		},
+		funk: {
+			name: "funk",
+			tags: ["funk"]
+		},
+		electronic: {
+			name: "electronic",
+			tags: ["electronic"]
+		},
+		dubstep: {
+			name: "dubstep",
+			tags: ["dubstep"]
+		},
+		ska: {
+			name: "ska",
+			tags: ["ska"]
+		},
+		punk: {
+			name: "punk",
+			tags: ["punk"]
+		},
+		soul: {
+			name: "soul",
+			tags: ["soul"]
+		},
+		rnb: {
+			name: "rnb",
+			tags: ["rnb", "r&b"]
+		},
+		pop: {
+			name: "pop",
+			tags: ["pop"]
+		}
+	};
+	
 	var $imageElem = $("#mainPhoto");
 	
 	var images = {
