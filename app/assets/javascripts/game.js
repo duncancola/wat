@@ -17,6 +17,8 @@ var game = (function () {
 	
 	var correctAnswers = 0;
 	
+	var previousImage = "";
+	
 	var Question = function (jsonObj) {
 		this.songUrl = jsonObj.song_url;
 		this.type = jsonObj.type || "text";
@@ -44,8 +46,11 @@ var game = (function () {
 		}
 		$(settings.optionsContainer).html(html).fadeIn(settings.questionFadeTime);
 		// photo?
-		var $img = $("<img>").attr("src", this.image);
-		$(settings.photoContainer).html("").append($img);
+		var $img = $("<img>").attr("src", previousImage);
+		if (previousImage) {
+			$(settings.photoContainer).html("").append($img);
+		}
+		previousImage = this.image;
 		// question text
 		$(settings.questionContainer).html($("<h2>").append(this.text));
 		// add question to game stats
@@ -92,8 +97,6 @@ var game = (function () {
 		}
 		$gameStat.find(".questionIcon").html($icon);
 	};
-	
-	
 	
 	var selectAnswer = function (question, answer, remainingQuestions) {
 		
