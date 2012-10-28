@@ -22,10 +22,15 @@ var game = (function () {
 		this.image = jsonObj.image;
 		this.answer = jsonObj.answer;
 		this.gameStatId = _.uniqueId("game_stat");
+		this.audioId = _.uniqueId("audio_");
 	};
 	
 	Question.prototype.display = function () {
 		var q = this;
+		
+		// play audio
+		document.getElementById(this.audioId).play();
+		
 		// template buttons
 		var html = Mustache.to_html($(settings.optionsTemplate).html(), this);
 		$(settings.optionsContainer).html(html).fadeIn(settings.questionFadeTime);
@@ -84,6 +89,9 @@ var game = (function () {
 		
 		question.killEvents();
 		
+		// stop audio
+		document.getElementById(question.audioId).pause();
+		
 		// set stat to correct or incorrect answer
 		question.chosenAnswer(answer === question.answer);
 		
@@ -101,8 +109,19 @@ var game = (function () {
 		var question = questions.shift();
 		question.display();
 		// TODO: all events relating to the question/html thus generated
-		console.log(question);
 		question.setEvents(questions);
+	};
+	
+	var preloadQuestionAudio = function (questions) {
+		_.each(questions, function (question) {
+			/* var $audioElem = $("<audio>").attr("id", question.audioId)
+				.attr("preload", "auto autobuffer")
+				.append("<source>").attr("src", question.songUrl);*/
+			var $audioElem = $("<audio>").attr("id", question.audioId)
+				.attr("src", question.songUrl)
+				.attr("preload", "auto");
+			$("body").append($audioElem);
+		});
 	};
 	
 	var load = function (modeName) {
@@ -116,6 +135,7 @@ var game = (function () {
 				var questions = _.map(questionsJson, function (q) {
 					return (new Question(q));
 				});
+				preloadQuestionAudio(questions);
 				loadQuestions(questions);
 			}
 		});
