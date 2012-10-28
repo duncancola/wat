@@ -26,7 +26,6 @@ var game = (function () {
 	
 	Question.prototype.display = function () {
 		var q = this;
-		console.log(q);
 		// template buttons
 		var html = Mustache.to_html($(settings.optionsTemplate).html(), this);
 		$(settings.optionsContainer).html(html).fadeIn(settings.questionFadeTime);
@@ -61,15 +60,18 @@ var game = (function () {
 	};
 	
 	Question.prototype.chosenAnswer = function (correct) {
-		var $icon = $("<i>");
+		var $gameStat = $(document.getElementById(this.gameStatId));
+		var $icon = $("<span>").addClass("padQuestion").append("<i>");
 		if (correct) {
-			$(this.gameStatId).parent().addClass("correct");
-			$icon.addClass("icon-ok");
+			$gameStat.parent().addClass("correct");
+			$icon.find("i").addClass("icon-ok");
 		} else {
-			$(this.gameStatId).parent().addClass("incorrect");
-			$icon.addClass("icon-remove");
+			$gameStat.parent().addClass("incorrect");
+			$icon.find("i").addClass("icon-remove");
+			var soundId = "sound_wat1";
+			document.getElementById(soundId).play();
 		}
-		$(this.gameStatId).find(".questionIcon span").html($icon);
+		$gameStat.find(".questionIcon").html($icon);
 	};
 	
 	var selectAnswer = function (question, answer, remainingQuestions) {
