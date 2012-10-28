@@ -27,12 +27,3 @@ class Dj
 	}
   end
 end
-
-mf = MusicFactory.new(SevenDigitalRest.new(DoesRequests.new))
-artists = mf.get_artists_single_track("rock")
-
-dj = Dj.new
-q = dj.create_questions(artists)
-puts "aafaefaef"
-puts q
-puts "zz"
