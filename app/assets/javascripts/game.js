@@ -10,6 +10,7 @@ var game = (function () {
 		photoContainer: "#mainPhoto",
 		questionContainer: "#questionContainer",
 		questionStatTemplate: "#questionStatTemplate",
+		previousAnswerTemplate: "#previousAnswerTemplate",
 		gameSidebar: "#gameSidebar",
 		questionFadeTime: 200,
 		modal: "#winnerModal"
@@ -17,7 +18,9 @@ var game = (function () {
 	
 	var correctAnswers = 0;
 	
-	var previousImage = "";
+	var questions = [];
+	
+	var currentQuestionIndex = 0;
 	
 	var Question = function (jsonObj) {
 		this.songUrl = jsonObj.song_url;
@@ -29,6 +32,7 @@ var game = (function () {
 		this.answer = jsonObj.answer;
 		this.gameStatId = _.uniqueId("game_stat");
 		this.audioId = _.uniqueId("audio_");
+		this.correct = false;
 	};
 	
 	Question.prototype.display = function () {
@@ -36,6 +40,10 @@ var game = (function () {
 		
 		// play audio
 		document.getElementById(this.audioId).play();
+		
+		var previousQuestion = questions[currentQuestionIndex-1];
+		
+		console.log("PreviousQuestionImage", (previousQuestion) ? previousQuestion.image : "");
 		
 		// template buttons
 		var html = "";
@@ -45,12 +53,16 @@ var game = (function () {
 			html = Mustache.to_html($(settings.optionsTemplateImage).html(), this);
 		}
 		$(settings.optionsContainer).html(html).fadeIn(settings.questionFadeTime);
-		// photo?
-		var $img = $("<img>").attr("src", previousImage);
-		if (previousImage) {
-			$(settings.photoContainer).html("").append($img);
+		// display info on the previous question
+		if (previousQuestion) {
+			var previousAnswerHtml = Mustache.render($(settings.previousAnswerTemplate).html(), {
+				image: previousQuestion.image,
+				correct: (previousQuestion.correct) ? "Correct" : "Incorrect",
+				artistInfo: previousQuestion.text + " " + previousQuestion.answer
+			});
+			// var $img = $("<img>").attr("src", previousQuestion.image);
+			$(settings.photoContainer).html(previousAnswerHtml);
 		}
-		previousImage = this.image;
 		// question text
 		$(settings.questionContainer).html($("<h2>").append(this.text));
 		// add question to game stats
@@ -64,11 +76,11 @@ var game = (function () {
 		$(settings.gameSidebar).children("ul").append($questionStat);
 	};
 	
-	Question.prototype.setEvents = function (remainingQuestions) {
+	Question.prototype.setEvents = function () {
 		var q = this;
 		$(settings.options).click(function () {
 			var answer = parseInt($(this).attr("id"), 10);
-			selectAnswer(q, answer, remainingQuestions);
+			selectAnswer(q, answer);
 		})
 		.mouseover(function () {
 			$(this).removeClass("standardOption").addClass("hoveredOption");
@@ -82,10 +94,10 @@ var game = (function () {
 		$(settings.options).unbind("click mouseover mouseout");
 	};
 	
-	Question.prototype.chosenAnswer = function (correct) {
+	Question.prototype.chosenAnswer = function () {
 		var $gameStat = $(document.getElementById(this.gameStatId));
 		var $icon = $("<span>").addClass("padQuestion").append("<i>");
-		if (correct) {
+		if (this.correct) {
 			$gameStat.parent().addClass("correct");
 			$icon.find("i").addClass("icon-ok");
 			correctAnswers++;
@@ -98,7 +110,10 @@ var game = (function () {
 		$gameStat.find(".questionIcon").html($icon);
 	};
 	
-	var selectAnswer = function (question, answer, remainingQuestions) {
+	var selectAnswer = function (question, answer) {
+		
+		// increase index of question, ready to display next question
+		currentQuestionIndex++;
 		
 		question.killEvents();
 		
@@ -106,9 +121,10 @@ var game = (function () {
 		document.getElementById(question.audioId).pause();
 		
 		// set stat to correct or incorrect answer
-		question.chosenAnswer(answer === question.answer);
+		question.correct = (answer === question.answer);
+		question.chosenAnswer();
 		
-		if (remainingQuestions.length === 0) {
+		if (currentQuestionIndex >= questions.length) {
 			// end game
 			var totalQuestions = $(settings.gameSidebar).find("li").length;
 			var $endMessage = $("<p>").append(correctAnswers + " answers correct out of " + totalQuestions);
@@ -116,16 +132,16 @@ var game = (function () {
 			$(settings.modal).modal();
 		} else {
 			// load next question
-			loadQuestions(remainingQuestions);
+			loadQuestions(currentQuestionIndex);
 		}
 	};
 	
 	// display first question and have events to show win/lose/next question/play music/timing etc.
-	var loadQuestions = function (questions) {
-		var question = questions.shift();
+	var loadQuestions = function () {
+		var question = questions[currentQuestionIndex];
 		question.display();
 		// TODO: all events relating to the question/html thus generated
-		question.setEvents(questions);
+		question.setEvents();
 	};
 	
 	var preloadQuestionAudio = function (questions) {
@@ -149,12 +165,13 @@ var game = (function () {
 				genre: genre
 			},
 			success: function (questionsJson) {
-				var questions = _.map(questionsJson, function (q) {
+				questions = _.map(questionsJson, function (q) {
 					return (new Question(q));
 				});
+				currentQuestionIndex = 0;
 				correctAnswers = 0;
 				preloadQuestionAudio(questions);
-				loadQuestions(questions);
+				loadQuestions();
 			}
 		});
 	};

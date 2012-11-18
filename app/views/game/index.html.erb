@@ -91,6 +91,18 @@
 </div>
 </script>
 
+<script id="previousAnswerTemplate" type="text/template">
+<div class="row">
+	<div class="span4">
+		<h2 class="{{correct}}">{{correct}}</h2>
+		<p>{{artistInfo}}</p>
+	</div>
+	<div class="span4">
+		<img src="{{image}}" alt="previous answer artist image"/>
+	</div>
+</div>
+</script>
+
 <script id="optionsTemplateImage" type="text/template">
 <div id="{{uniqueQuestionId}}">
 {{#options}}
