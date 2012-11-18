@@ -1,6 +1,8 @@
 Wat::Application.routes.draw do
   root :to => 'game#index'
   match '/play' => 'play#index'
+  match '/fast' => 'fast#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
