@@ -7,10 +7,13 @@ var game = (function () {
 		optionsTemplateImage: "#optionsTemplateImage",
 		optionsContainer: "#options",
 		options: ".optionContainer",
-		photoContainer: "#mainPhoto",
+		infoContainer: "#infoContainer",
 		questionContainer: "#questionContainer",
 		questionStatTemplate: "#questionStatTemplate",
 		previousAnswerTemplate: "#previousAnswerTemplate",
+		infoContainerTemplate: "#infoContainerTemplate",
+		allPreviousArtists: "#allPreviousArtists",
+		lastPreviousArtist: "#lastPreviousArtist",
 		gameSidebar: "#gameSidebar",
 		questionFadeTime: 200,
 		modal: "#winnerModal"
@@ -60,8 +63,9 @@ var game = (function () {
 				correct: (previousQuestion.correct) ? "Correct" : "Incorrect",
 				artistInfo: previousQuestion.text + " " + previousQuestion.answer
 			});
-			// var $img = $("<img>").attr("src", previousQuestion.image);
-			$(settings.photoContainer).html(previousAnswerHtml);
+			var $img = $("<img>").attr("src", previousQuestion.image);
+			$(settings.lastPreviousArtist).html(previousAnswerHtml);
+			$(settings.allPreviousArtists).append($img);
 		}
 		// question text
 		$(settings.questionContainer).html($("<h2>").append(this.text));
@@ -165,6 +169,7 @@ var game = (function () {
 				genre: genre
 			},
 			success: function (questionsJson) {
+				$(settings.infoContainer).html($(settings.infoContainerTemplate).html());
 				questions = _.map(questionsJson, function (q) {
 					return (new Question(q));
 				});
