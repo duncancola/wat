@@ -24,6 +24,11 @@ class SevenDigitalRest
     @does_requests.get(BASE_URL + "release/tracks?releaseid=" + release_id + "&oauth_consumer_key=" + CONSUMER_KEY)
    end
 
+   def get_top_tracks(artist_id)
+    @does_requests.get(BASE_URL + "artist/toptracks?artistid=" + artist_id + "&oauth_consumer_key=" + CONSUMER_KEY)
+   end
+
+
   def get_track_preview(track_id)
     @does_requests.get(BASE_URL + "track/preview?trackid=" + track_id + "&oauth_consumer_key=" + CONSUMER_KEY)
   end
