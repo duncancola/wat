@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121125152532) do
+ActiveRecord::Schema.define(:version => 20121125162030) do
+
+  create_table "games", :force => true do |t|
+    t.boolean "has_ended", :default => false
+    t.string  "uuid"
+  end
 
   create_table "questions", :force => true do |t|
     t.string   "options_type"
@@ -24,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20121125152532) do
     t.string   "artist_image"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "game_id"
   end
 
 end
