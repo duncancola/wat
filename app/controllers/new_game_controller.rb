@@ -1,10 +1,9 @@
 require 'music_factory'
 require 'game_master'
-class FastController < ApplicationController
+class NewGameController < ApplicationController
 
   respond_to :json
   def index
-
     game_id = request.uuid
     GameMaster.register_new_game(game_id, params[:genre])
 

@@ -1,19 +1,13 @@
-require 'music_factory'
-require 'dj'
+require 'game_master'
 class PlayController < ApplicationController
 
   respond_to :json
   def index
-    genre = params[:genre]
-
-	puts "genre=" + genre
-    mf = MusicFactory.new(SevenDigitalRest.new(DoesRequests.new))
-    artists = mf.get_artists_single_track(genre)
-    dj = Dj.new
-    @questions = dj.create_questions(artists)
+    @questions = GameMaster.get_questions(params[:game_id],
+                                          params[:exclude])
 
     respond_with(@questions) do |format|
-      format.json { render :json => @questions.to_json() }
+      format.json { render :json => @questions.as_json() }
     end
   end
 end
