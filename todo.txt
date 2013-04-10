@@ -13,3 +13,8 @@ spain mosh pit: http://www.flickr.com/photos/zoidberg72/7353652074/sizes/o/in/ph
 mosh pit: http://www.flickr.com/photos/xakaxunknownx/495312667/sizes/l/in/photostream/
 maryland mosh pit: http://www.flickr.com/photos/bantam10/7046608785/sizes/o/in/photostream/
 classical: http://www.flickr.com/photos/clickamazonia-com/7220951676/sizes/o/in/photostream/
+
+UPDATE:
+load 1 question at a time, queue them up in front-end
+sort out box: show all previous images from previous questions (small size)
+then underneath show text relating to the previous answered question
