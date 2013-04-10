@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
-  has_many :questions
+  attr_accessible :uuid, :has_ended
 
-  attr_reader :has_ended
+  has_many :questions, :dependent => :destroy, :primary_key => :uuid
+
 end
