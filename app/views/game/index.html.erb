@@ -6,7 +6,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="span8">
+		<div class="span8" id="infoContainer">
 			<div id="mainPhoto">
 				<img src=<%= image_path("maryland_mosh_pit.jpg") %> id="normalModePhoto" class="shown"/>
 				<img src=<%= image_path("portable_record_player.jpg") %> id="hipsterModePhoto" class="hidden"/>
@@ -88,6 +88,31 @@
 		</div>
 	</div>
 {{/options}}
+</div>
+</script>
+
+<script id="infoContainerTemplate" type="text/template">
+<div class="row">
+	<div class="span8" id="allPreviousArtists">
+		
+	</div>
+</div>
+<div class="row">
+	<div class="span8" id="lastPreviousArtist">
+	
+	</div>
+</div>
+</script>
+
+<script id="previousAnswerTemplate" type="text/template">
+<div class="row">
+	<div class="span4">
+		<h2 class="{{correct}}">{{correct}}</h2>
+		<p>{{artistInfo}}</p>
+	</div>
+	<div class="span4">
+		<img src="{{image}}" alt="previous answer artist image"/>
+	</div>
 </div>
 </script>
 
